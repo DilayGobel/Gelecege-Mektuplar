@@ -10,13 +10,13 @@ final class ApiConstants {
     // Eğer uygulama 'release' modunda derlendiyse, canlı sunucu adresini kullan.
     if (kReleaseMode) {
       // TODO: Backend'i canlıya aldığında bu adresi kendi sunucu adresinle değiştir.
-      return 'https://api.gelecegemektuplar.com/api';
+      return 'https://gelecege-mektuplar-demo-backend.onrender.com/api';
     }
     // Eğer uygulama 'debug' modunda çalışıyorsa, yerel sunucu adresini kullan.
     else {
       // Geliştirme sırasında hem emülatör hem de fiziksel cihazdan erişim için
       // bilgisayarının yerel ağ IP adresini kullan.
-      return 'http://192.168.1.107:5000/api';
+      return 'https://gelecege-mektuplar-demo-backend.onrender.com/api';
     }
   }
 
