@@ -21,7 +21,9 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
     if (_formKey.currentState?.validate() ?? false) {
       // authProvider kullanıyoruz.
       // register metodu state'i güncelleyecek, biz de bu state'i dinleyeceğiz.
-      await ref.read(authProvider.notifier).register(
+      await ref
+          .read(authProvider.notifier)
+          .register(
             _usernameController.text,
             _emailController.text,
             _passwordController.text,
@@ -45,7 +47,10 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
         error: (message) {
           if (mounted) {
             ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(message), backgroundColor: Colors.red),
+              SnackBar(
+                content: Text(message),
+                backgroundColor: Theme.of(context).colorScheme.error,
+              ),
             );
           }
         },
@@ -141,16 +146,8 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                       ),
                     ),
                     child: isLoading
-                        ? const CircularProgressIndicator(color: Colors.white)
-                        : Text(
-                            'Kayıt Ol',
-                            style: Theme.of(context).textTheme.titleLarge
-                                ?.copyWith(
-                                  color: Theme.of(
-                                    context,
-                                  ).colorScheme.onPrimary,
-                                ),
-                          ),
+                        ? const CircularProgressIndicator()
+                        : const Text('Kayıt Ol'),
                   ),
                 ),
                 const SizedBox(height: 20),

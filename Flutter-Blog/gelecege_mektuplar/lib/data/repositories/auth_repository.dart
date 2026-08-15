@@ -18,7 +18,7 @@ class AuthRepository {
   final Dio _dio;
   final Ref _ref;
 
-  AuthRepository({required Dio dio, required Ref ref}) : _dio = dio, _ref = ref;
+  AuthRepository({required this._dio, required Ref ref}) : _ref = ref;
 
   /// Kullanıcı kaydı yapar.
   /// Başarılı olursa token'ı saklar ve [UserModel] döndürür.
