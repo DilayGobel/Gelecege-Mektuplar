@@ -20,9 +20,7 @@ final class AppTheme {
         secondary: _secondary,
         onSecondary: Colors.white,
         error: Colors.redAccent,
-        onError: Colors.white,
-        background: _background, // Arka plan rengi
-        onBackground: _primaryDark, // Arka plan üzerindeki metin rengi
+        onError: Colors.white, // Arka plan üzerindeki metin rengi
         surface: Colors.white, // Card, Dialog gibi yüzeylerin rengi
         onSurface:
             _primaryDark, // Yüzeyler üzerindeki metin rengi (Başlıklar vs.)

@@ -20,10 +20,9 @@ final dioProvider = Provider<Dio>((ref) {
     InterceptorsWrapper(
       // Her istek gönderilmeden önce bu fonksiyon çalışır.
       onRequest: (options, handler) async {
-        // SharedPreferences'tan token'ı al.
-        // AuthRepository'deki provider'ı kullanıyoruz.
-        final prefs = await ref.read(sharedPreferencesProvider.future);
-        final token = prefs.getString('jwt_token');
+        // Güvenli depolamadan (secure storage) token'ı al.
+        final storage = ref.read(secureStorageProvider);
+        final token = await storage.read(key: 'jwt_token');
 
         // Eğer token varsa, Authorization başlığına ekle.
         if (token != null) {

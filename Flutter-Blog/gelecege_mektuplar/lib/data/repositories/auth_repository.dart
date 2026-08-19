@@ -1,12 +1,16 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart'
+    show FlutterSecureStorage, AndroidOptions;
 import 'package:gelecege_mektuplar/core/constants/api_constants.dart';
 import 'package:gelecege_mektuplar/core/network/dio_client.dart';
 import 'package:gelecege_mektuplar/data/models/user_model.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-final sharedPreferencesProvider = FutureProvider<SharedPreferences>(
-  (ref) => SharedPreferences.getInstance(),
+// Güvenli depolama için FlutterSecureStorage provider'ı
+final secureStorageProvider = Provider<FlutterSecureStorage>(
+  (ref) => const FlutterSecureStorage(
+    aOptions: AndroidOptions(encryptedSharedPreferences: true),
+  ),
 );
 
 /// AuthRepository'yi sağlamak için Riverpod provider'ı.
@@ -18,7 +22,7 @@ class AuthRepository {
   final Dio _dio;
   final Ref _ref;
 
-  AuthRepository({required this._dio, required Ref ref}) : _ref = ref;
+  AuthRepository({required this._dio, required this._ref});
 
   /// Kullanıcı kaydı yapar.
   /// Başarılı olursa token'ı saklar ve [UserModel] döndürür.
@@ -34,8 +38,8 @@ class AuthRepository {
       );
 
       final token = response.data['token'] as String;
-      final prefs = await _ref.read(sharedPreferencesProvider.future);
-      await prefs.setString('jwt_token', token);
+      final storage = _ref.read(secureStorageProvider);
+      await storage.write(key: 'jwt_token', value: token);
 
       // Backend, kullanıcı bilgilerini 'user' anahtarı altında bir nesne olarak gönderiyor.
       final userData = response.data['user'] as Map<String, dynamic>;
@@ -64,8 +68,8 @@ class AuthRepository {
       );
 
       final token = response.data['token'] as String;
-      final prefs = await _ref.read(sharedPreferencesProvider.future);
-      await prefs.setString('jwt_token', token);
+      final storage = _ref.read(secureStorageProvider);
+      await storage.write(key: 'jwt_token', value: token);
 
       // Backend, kullanıcı bilgilerini 'user' anahtarı altında bir nesne olarak gönderiyor.
       final userData = response.data['user'] as Map<String, dynamic>;
@@ -84,8 +88,8 @@ class AuthRepository {
   /// Kullanıcı oturumunu sonlandırır.
   Future<void> logout() async {
     try {
-      final prefs = await _ref.read(sharedPreferencesProvider.future);
-      await prefs.remove('jwt_token');
+      final storage = _ref.read(secureStorageProvider);
+      await storage.delete(key: 'jwt_token');
     } catch (e) {
       // Genellikle bu işlem hata vermez ama verirse loglamak iyi olabilir.
       throw 'Çıkış yaparken bir sorun oluştu.';
@@ -95,8 +99,8 @@ class AuthRepository {
   /// Mevcut token'ı kontrol ederek oturum durumunu doğrular.
   /// Token geçerliyse ve bir kullanıcı bilgisi alınabiliyorsa UserModel döner.
   Future<String?> getAuthToken() async {
-    final prefs = await _ref.read(sharedPreferencesProvider.future);
-    return prefs.getString('jwt_token');
+    final storage = _ref.read(secureStorageProvider);
+    return await storage.read(key: 'jwt_token');
   }
 
   /// Saklanan token ile mevcut kullanıcı bilgisini getirir.
