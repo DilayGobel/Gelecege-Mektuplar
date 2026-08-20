@@ -58,7 +58,7 @@ class _CreatePostScreenState extends ConsumerState<CreatePostScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Create New Post')),
+      appBar: AppBar(title: const Text('Gönderi Oluştur')),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Form(
@@ -69,12 +69,12 @@ class _CreatePostScreenState extends ConsumerState<CreatePostScreen> {
               TextFormField(
                 controller: _titleController,
                 decoration: const InputDecoration(
-                  labelText: 'Title',
+                  labelText: 'Başlık',
                   border: OutlineInputBorder(),
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter a title';
+                    return 'Lütfen bir başlık';
                   }
                   return null;
                 },
@@ -82,7 +82,7 @@ class _CreatePostScreenState extends ConsumerState<CreatePostScreen> {
               const SizedBox(height: 16),
               DropdownButtonFormField<String>(
                 initialValue: _selectedCategory,
-                hint: const Text('Select Category'),
+                hint: const Text('Kategori Seçiniz'),
                 isExpanded: true,
                 decoration: const InputDecoration(border: OutlineInputBorder()),
                 items: _categories.map((String category) {
@@ -98,7 +98,7 @@ class _CreatePostScreenState extends ConsumerState<CreatePostScreen> {
                 },
                 validator: (value) {
                   if (value == null) {
-                    return 'Please select a category';
+                    return 'Lütfen bir kategori seçiniz.';
                   }
                   return null;
                 },
@@ -107,14 +107,14 @@ class _CreatePostScreenState extends ConsumerState<CreatePostScreen> {
               TextFormField(
                 controller: _contentController,
                 decoration: const InputDecoration(
-                  labelText: 'Content',
+                  labelText: 'İçerik',
                   border: OutlineInputBorder(),
                   alignLabelWithHint: true,
                 ),
                 maxLines: 10,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter some content';
+                    return 'Lütfen bir içerik yazınız.';
                   }
                   return null;
                 },
@@ -127,7 +127,7 @@ class _CreatePostScreenState extends ConsumerState<CreatePostScreen> {
                         padding: const EdgeInsets.symmetric(vertical: 16),
                       ),
                       onPressed: _submitPost,
-                      child: const Text('CREATE POST'),
+                      child: const Text('GÖNDERİYİ YAYINLA'),
                     ),
             ],
           ),
