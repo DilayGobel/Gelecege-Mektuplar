@@ -1,4 +1,4 @@
-# DevPulse Mobile - Cross-Platform Mobile Blog & News App
+# Geleceğe Mektuplar - Cross-Platform Mobile Blog & News App
 
 ![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)
 ![Dart](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)
@@ -9,7 +9,7 @@
 
 ## Projeye Genel Bakış (Overview)
 
-DevPulse Mobile, Flutter ve Node.js teknolojileri kullanılarak geliştirilmiş, modern ve cross-platform bir blog/haber uygulamasıdır. Bu proje, güvenli kullanıcı yönetimi, dinamik içerik oluşturma (CRUD) ve modern bir kullanıcı arayüzü (UI/UX) gibi temel özellikleri bir araya getirerek, full-stack uygulama geliştirme yeteneklerimi sergilemek amacıyla oluşturulmuştur. Backend REST API'ı Render.com üzerinde canlı olarak yayınlanmaktadır.
+Geleceğe Mektuplar, Flutter ve Node.js teknolojileri kullanılarak geliştirilmiş, modern ve cross-platform bir blog/haber uygulamasıdır. Bu proje, güvenli kullanıcı yönetimi, dinamik içerik oluşturma (CRUD) ve modern bir kullanıcı arayüzü (UI/UX) gibi temel özellikleri bir araya getirerek, full-stack uygulama geliştirme yeteneklerimi sergilemek amacıyla oluşturulmuştur. Backend REST API'ı Render.com üzerinde canlı olarak yayınlanmaktadır.
 
 ## Temel Özellikler (Key Features)
 
@@ -114,11 +114,3 @@ Flutter-Blog/
 | `POST` | `/api/posts` | Yeni bir gönderi oluşturur. | Evet |
 | `DELETE`| `/api/posts/:id` | Bir gönderiyi ID ile siler. | Evet |
 | `PUT` | `/api/posts/:id` | Bir gönderiyi ID ile günceller. | Evet |
-
-## CV / Portföy Özeti (Resume Summary)
-
-- **Full-Stack Geliştirme:** Flutter ve Node.js kullanarak uçtan uca güvenli bir mobil blog platformu geliştirildi.
-- **Gelişmiş State Management:** Riverpod (AsyncNotifier) ile karmaşık asenkron (loading, data, error) durumları yönetildi ve reaktif bir UI oluşturuldu.
-- **Güvenli Mobil Mimari:** JWT token'larının `flutter_secure_storage` ile şifreli olarak saklandığı ve `Dio Interceptor` ile API isteklerine otomatik olarak eklendiği bir kimlik doğrulama akışı tasarlandı.
-- **API Tasarımı ve Dağıtımı:** Node.js/Express ile RESTful API oluşturuldu, Mongoose ile MongoDB Atlas'a bağlandı ve Render.com üzerinde canlıya alındı.
-- **Modern UI/UX İlkeleri:** Material 3 tasarım prensipleri, responsive layoutlar ve Shimmer/Skeleton gibi modern UI/UX desenleri uygulandı.
